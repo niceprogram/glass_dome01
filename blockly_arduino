@@ -1,0 +1,71 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <toolboxcategories>CAT_LOGIC,CAT_LOOPS,CAT_MATH,CAT_ARRAY,CAT_TEXT,CAT_VARIABLES,CAT_FUNCTIONS,CAT_ARDUINO,CAT_LCD_SCREEN,CAT_LED_RGB_CHAIN,CAT_ROBOTS_MOTORS,CAT_STEPPER</toolboxcategories>
+  <toolbox>toolbox_arduino_all</toolbox>
+  <block type="procedures_defnoreturn" id="3_u8oq^|~X^WBbO/yX$m" x="87" y="-12">
+    <field name="NAME">motor</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="inout_PWM_write_validator" id=":38gvi_H?#:EEpCs@6ds">
+        <field name="PIN">3</field>
+        <value name="NUM">
+          <shadow type="math_number" id="[D^20rkLF8yq_;K)7e-V">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="inout_digital_write_validator" id="/R=AR+(aS~kg@ZjcSkPi">
+            <field name="PIN">6</field>
+            <field name="STAT">LOW</field>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="base_setup_loop" id="$grcaRgo`bZ1J2N4TfDE" x="-387" y="38">
+    <statement name="DO">
+      <block type="lp2i_ledRGB_WS2812B_init" id="k:[,nhzl(}5Fr$Q`*v0q">
+        <field name="NEOPIXEL_NAME">NeoPixels</field>
+        <value name="Pin_LedRGB_init">
+          <shadow type="math_number" id="2JUmF5=8]dNI`{Qnu|D7">
+            <field name="NUM">6</field>
+          </shadow>
+        </value>
+        <value name="Number_of_Pixels">
+          <shadow type="math_number" id="Er:CPEWRBB/oAx`CDT?]">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+      </block>
+    </statement>
+    <statement name="LOOP">
+      <block type="procedures_callnoreturn" id="KLeIv*pMT2]jOnW)=Yk2">
+        <mutation name="motor"></mutation>
+        <next>
+          <block type="lp2i_ledRGB_WS2812B_setPixelColor" id="+W2J_9DbEaf,[gtS_ji5">
+            <field name="NEOPIXEL_NAME">NeoPixels</field>
+            <value name="Red">
+              <shadow type="math_number" id=",s^hR%fo0#kgcOfuf@sg">
+                <field name="NUM">255</field>
+              </shadow>
+            </value>
+            <value name="Green">
+              <shadow type="math_number" id="S4jySu:B}=pVw@Nm)TZG">
+                <field name="NUM">255</field>
+              </shadow>
+            </value>
+            <value name="Blue">
+              <shadow type="math_number" id="};/0~wyH,gm*[rH$jU*i">
+                <field name="NUM">255</field>
+              </shadow>
+            </value>
+            <value name="Pixel_number">
+              <shadow type="math_number" id=";1Z$|co:Oe-^t$+JKYl^">
+                <field name="NUM">0</field>
+              </shadow>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
