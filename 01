@@ -1,0 +1,64 @@
+int Input_pot_meter;
+int Digital_input_motor;
+int PWM_input_motor;
+
+// Describe this function...
+void blink() {
+  for (int count = 0; count < 10; count++) {
+    delay(500);
+    digitalWrite(13, HIGH);
+    delay(500);
+    digitalWrite(13, LOW);
+  }
+  for (int count2 = 0; count2 < 3; count2++) {
+    delay(50);
+    digitalWrite(13, HIGH);
+    delay(50);
+    digitalWrite(13, LOW);
+  }
+}
+
+// function...motor A prepares the pin numbers and speed
+void motorA(int motor_speed) {
+  motor(motor_speed, 3, 5);
+}
+
+// function...motor A prepares the pin numbers and speed
+void motorB(int motor_speed) {
+  motor(motor_speed, 6, 9);
+}
+
+// Describe this function...
+void motor(int motor_speed, int motor_IN1, int motor_IN2) {
+  if (motor_speed <= 0) {
+    PWM_input_motor = motor_IN1;
+    Digital_input_motor = motor_IN2;
+
+  } else {
+    PWM_input_motor = motor_IN2;
+    Digital_input_motor = motor_IN1;
+
+  }
+  analogWrite(PWM_input_motor, motor_speed);
+  digitalWrite(Digital_input_motor, LOW);
+}
+
+
+void setup() {
+  pinMode(13, OUTPUT);
+    Input_pot_meter = 0;
+  Digital_input_motor = 0;
+  PWM_input_motor = 0;
+  blink();
+
+  pinMode(PWM_input_motor, OUTPUT);
+  pinMode(Digital_input_motor, OUTPUT);
+}
+
+void loop() {
+    Input_pot_meter = analogRead((map(0, 0, 1023, 0, 255)));
+    motorA(Input_pot_meter);
+    motorB(Input_pot_meter);
+
+}
+
