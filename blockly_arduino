@@ -1,70 +1,424 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <toolboxcategories>CAT_LOGIC,CAT_LOOPS,CAT_MATH,CAT_ARRAY,CAT_TEXT,CAT_VARIABLES,CAT_FUNCTIONS,CAT_ARDUINO,CAT_LCD_SCREEN,CAT_LED_RGB_CHAIN,CAT_ROBOTS_MOTORS,CAT_STEPPER</toolboxcategories>
+  <toolboxcategories>CAT_LOGIC,CAT_LOOPS,CAT_MATH,CAT_ARRAY,CAT_TEXT,CAT_VARIABLES,CAT_FUNCTIONS,CAT_ARDUINO,CAT_LED_RGB_CHAIN</toolboxcategories>
   <toolbox>toolbox_arduino_all</toolbox>
-  <block type="procedures_defnoreturn" id="3_u8oq^|~X^WBbO/yX$m" x="87" y="-12">
-    <field name="NAME">motor</field>
-    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+  <block type="procedures_defnoreturn" id="csXo=~c*_}YUlQ}rlYlY" x="-462" y="-863">
+    <field name="NAME">blink</field>
+    <comment pinned="true" h="80" w="160">function...Arduino systems startup indicator</comment>
     <statement name="STACK">
-      <block type="inout_PWM_write_validator" id=":38gvi_H?#:EEpCs@6ds">
-        <field name="PIN">3</field>
-        <value name="NUM">
-          <shadow type="math_number" id="[D^20rkLF8yq_;K)7e-V">
-            <field name="NUM">10</field>
-          </shadow>
-        </value>
+      <block type="controls_repeat" id="~~wgCtQG[x-nu9/R1ICF">
+        <field name="TIMES">3</field>
+        <statement name="DO">
+          <block type="base_delay" id="I1)O}$k|YBRBuFv8q[-)">
+            <value name="DELAY_TIME">
+              <shadow type="math_number" id="0~{-F@lSBju27.Y_rC(F">
+                <field name="NUM">500</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="inout_buildin_led" id="s4TxyI$qDOUeP63n_2S6">
+                <field name="STAT">HIGH</field>
+                <next>
+                  <block type="base_delay" id="A3YQLr?Oq=r-w]gW*6t^">
+                    <value name="DELAY_TIME">
+                      <shadow type="math_number" id="}%xP*v?m$w::HsNe0AM3">
+                        <field name="NUM">500</field>
+                      </shadow>
+                    </value>
+                    <next>
+                      <block type="inout_buildin_led" id="t*-D;6:P:Cg*qRZ[k/Vm">
+                        <field name="STAT">LOW</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
         <next>
-          <block type="inout_digital_write_validator" id="/R=AR+(aS~kg@ZjcSkPi">
-            <field name="PIN">6</field>
-            <field name="STAT">LOW</field>
+          <block type="controls_repeat" id="y5vAK:6QGE%k$$Kfy7/p">
+            <field name="TIMES">10</field>
+            <statement name="DO">
+              <block type="base_delay" id="Sg9mp=,Mvs3S=8*g@+a7">
+                <value name="DELAY_TIME">
+                  <shadow type="math_number" id="Y]+o)LacuU#$MeP]-V3H">
+                    <field name="NUM">50</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="inout_buildin_led" id="UOie:ojI3S{[)#C%finw">
+                    <field name="STAT">HIGH</field>
+                    <next>
+                      <block type="base_delay" id="(%C~K(-H{!d`PY9RVLdH">
+                        <value name="DELAY_TIME">
+                          <shadow type="math_number" id="7`Mi7idlKUo?A?XlNp-e">
+                            <field name="NUM">50</field>
+                          </shadow>
+                        </value>
+                        <next>
+                          <block type="inout_buildin_led" id="dV2`;datXL?9,Td,U7gk">
+                            <field name="STAT">LOW</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
           </block>
         </next>
       </block>
     </statement>
   </block>
-  <block type="base_setup_loop" id="$grcaRgo`bZ1J2N4TfDE" x="-387" y="38">
-    <statement name="DO">
-      <block type="lp2i_ledRGB_WS2812B_init" id="k:[,nhzl(}5Fr$Q`*v0q">
+  <block type="procedures_defnoreturn" id="*w)mgcelUV)eG[QSMHw+" x="262" y="-863">
+    <field name="NAME">test_output</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="serial_print" id="jp2Eo@M(LK9t86eSw-}W">
+        <value name="CONTENT">
+          <shadow type="text" id="-zi#7i!)w@(Ze[~sbP:R">
+            <field name="TEXT"></field>
+          </shadow>
+          <block type="variables_get" id="Mfp+PRpR)u*Kzh;+O.Yq">
+            <field name="VAR">Input_potentiometer</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="Zrd-W99!l3{NPvzIw-W*" x="263" y="-588">
+    <field name="NAME">colour_LED</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="lp2i_ledRGB_WS2812B_setPixelColor" id="Au.2hO/s8`4Bx2U~`@G9">
         <field name="NEOPIXEL_NAME">NeoPixels</field>
-        <value name="Pin_LedRGB_init">
-          <shadow type="math_number" id="2JUmF5=8]dNI`{Qnu|D7">
-            <field name="NUM">6</field>
+        <value name="Red">
+          <shadow type="math_number" id="z][VeE:h~49DP}!zDmC:">
+            <field name="NUM">255</field>
           </shadow>
         </value>
-        <value name="Number_of_Pixels">
-          <shadow type="math_number" id="Er:CPEWRBB/oAx`CDT?]">
-            <field name="NUM">1</field>
+        <value name="Green">
+          <shadow type="math_number" id="l.=(DF+x(@,@w,(A*?%5">
+            <field name="NUM">255</field>
+          </shadow>
+        </value>
+        <value name="Blue">
+          <shadow type="math_number" id="E5Ummr$+f8T.$|p|]xrE">
+            <field name="NUM">255</field>
+          </shadow>
+        </value>
+        <value name="Pixel_number">
+          <shadow type="math_number" id="7W#!C!s%,}3:EYm`-%ZP">
+            <field name="NUM">0</field>
           </shadow>
         </value>
       </block>
     </statement>
-    <statement name="LOOP">
-      <block type="procedures_callnoreturn" id="KLeIv*pMT2]jOnW)=Yk2">
-        <mutation name="motor"></mutation>
+  </block>
+  <block type="base_setup_loop" id="JXq^)gY[fB/hs+E6;~X;" x="-1337" y="-462">
+    <statement name="DO">
+      <block type="serial_init" id="i|z^r5YR8a+CP|*jthHv">
+        <field name="SPEED">9600</field>
         <next>
-          <block type="lp2i_ledRGB_WS2812B_setPixelColor" id="+W2J_9DbEaf,[gtS_ji5">
-            <field name="NEOPIXEL_NAME">NeoPixels</field>
-            <value name="Red">
-              <shadow type="math_number" id=",s^hR%fo0#kgcOfuf@sg">
-                <field name="NUM">255</field>
-              </shadow>
-            </value>
-            <value name="Green">
-              <shadow type="math_number" id="S4jySu:B}=pVw@Nm)TZG">
-                <field name="NUM">255</field>
-              </shadow>
-            </value>
-            <value name="Blue">
-              <shadow type="math_number" id="};/0~wyH,gm*[rH$jU*i">
-                <field name="NUM">255</field>
-              </shadow>
-            </value>
-            <value name="Pixel_number">
-              <shadow type="math_number" id=";1Z$|co:Oe-^t$+JKYl^">
+          <block type="variables_set" id="+rS3:vtRudf8IS@s+AX`">
+            <field name="VAR">Input_potentiometer</field>
+            <value name="VALUE">
+              <block type="math_number" id="0$4F;D{)+PiM;o+[do3k">
                 <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="5J`@Q%@(3j5BuTix}[Bp">
+                <field name="VAR">Digital_input_motor</field>
+                <value name="VALUE">
+                  <block type="math_number" id="*x9(H3n!OZ9?as-Pf53a">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="Aebo@iY#v1xbS7G@}~7F">
+                    <field name="VAR">PWM_input_motor</field>
+                    <value name="VALUE">
+                      <block type="math_number" id=");fj{e!/PbQ0%j/%|6Ta">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="procedures_callnoreturn" id=":4!XbAJg4[(_}5/5$7_i">
+                        <mutation name="blink"></mutation>
+                        <comment pinned="true" h="80" w="160">start the Arduino Pro mini ATMEGA 328P 3.3v</comment>
+                        <next>
+                          <block type="lp2i_ledRGB_WS2812B_init" id="6}Da{lCZCkoo/KxbXK#*">
+                            <field name="NEOPIXEL_NAME">NeoPixels</field>
+                            <value name="Pin_LedRGB_init">
+                              <shadow type="math_number" id="AM:X4%e,Jw.9PQTP=[3)">
+                                <field name="NUM">6</field>
+                              </shadow>
+                            </value>
+                            <value name="Number_of_Pixels">
+                              <shadow type="math_number" id="S!{=;*4WDle#sH-jg1rw">
+                                <field name="NUM">3</field>
+                              </shadow>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <statement name="LOOP">
+      <block type="variables_set" id="GbC4XxWZO(}-/_6vXKvb">
+        <field name="VAR">Input_potentiometer</field>
+        <value name="VALUE">
+          <block type="base_map" id="U_U@IiwhI5,5]Qw*(Dl]">
+            <value name="NUM">
+              <shadow type="math_number" id="Cs-Xr|vW4ACz%kaOdkM@">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="inout_analog_read_validator" id="FqWqYTbO75/oF:i.}kWV">
+                <field name="PIN">A0</field>
+              </block>
+            </value>
+            <value name="DMAX">
+              <shadow type="math_number" id=":cRiv9MjWmtkPuc%%[Nd">
+                <field name="NUM">255</field>
               </shadow>
             </value>
           </block>
+        </value>
+        <next>
+          <block type="procedures_callnoreturn" id="SZ8:@m^/yKcGEC?m,4pU">
+            <mutation name="test_output"></mutation>
+            <next>
+              <block type="procedures_callnoreturn" id="_fk`I~l.5jcb1=Srh2wA">
+                <mutation name="motorA">
+                  <arg name="motor_speed"></arg>
+                </mutation>
+                <value name="ARG0">
+                  <block type="variables_get" id="|n1J5oz17ZH-*#QA@KxL">
+                    <field name="VAR">Input_potentiometer</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="procedures_callnoreturn" id="tn6XR:x;@D]|S.k/(+zm">
+                    <mutation name="motorB">
+                      <arg name="motor_speed"></arg>
+                    </mutation>
+                    <value name="ARG0">
+                      <block type="variables_get" id="91Mbt`J8CsMe6?oJS*cE">
+                        <field name="VAR">Input_potentiometer</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
         </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="Pi`^L:-^!#T*`v[%;}Vq" x="-463" y="-463">
+    <mutation>
+      <arg name="motor_speed"></arg>
+    </mutation>
+    <field name="NAME">motorA</field>
+    <comment pinned="true" h="80" w="160">function...motor A prepares the pin numbers and speed</comment>
+    <statement name="STACK">
+      <block type="procedures_callnoreturn" id="~7)jQ$D9-dPoEG4+}u$-">
+        <mutation name="motor">
+          <arg name="motor_speed"></arg>
+          <arg name="motor_IN1"></arg>
+          <arg name="motor_IN2"></arg>
+        </mutation>
+        <value name="ARG0">
+          <block type="variables_get" id="15-g2+aJ@7K*TXky/55b">
+            <field name="VAR">motor_speed</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="math_number" id="?G`6Uo]d8iI0w81~jKTL">
+            <field name="NUM">3</field>
+          </block>
+        </value>
+        <value name="ARG2">
+          <block type="math_number" id="9ZG1,uO0qf_FqR8KL3N%">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="B=phGz8CB?tO$A$X!a-y" x="-462" y="-313">
+    <mutation>
+      <arg name="motor_speed"></arg>
+    </mutation>
+    <field name="NAME">motorB</field>
+    <comment pinned="true" h="80" w="160">function...motor B prepares the pin numbers and speed</comment>
+    <statement name="STACK">
+      <block type="procedures_callnoreturn" id="*JB88Cy4aoUv%A86,03k">
+        <mutation name="motor">
+          <arg name="motor_speed"></arg>
+          <arg name="motor_IN1"></arg>
+          <arg name="motor_IN2"></arg>
+        </mutation>
+        <value name="ARG0">
+          <block type="variables_get" id="v:.m(HTMknl2x4ijC8kE">
+            <field name="VAR">motor_speed</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="math_number" id="-%PRPm8cY*)X:R4)kmfa">
+            <field name="NUM">6</field>
+          </block>
+        </value>
+        <value name="ARG2">
+          <block type="math_number" id="uOUaMvKn~HKFy(SE#-4;">
+            <field name="NUM">9</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="3_u8oq^|~X^WBbO/yX$m" inline="true" x="-463" y="-163">
+    <mutation>
+      <arg name="motor_speed"></arg>
+      <arg name="motor_IN1"></arg>
+      <arg name="motor_IN2"></arg>
+    </mutation>
+    <field name="NAME">motor</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="controls_if" id="J8cxOxX-sBXz-=|rU#T(" inline="true">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="Y|v6b06URrCmMaO6Y+![">
+            <field name="OP">LTE</field>
+            <value name="A">
+              <block type="variables_get" id=".-@Yzi6_@1l4kA0,i9e~" inline="true">
+                <field name="VAR">motor_speed</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number" id="zWRll,xat((frVEVnOII" inline="true">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="nM@~A/TV:;$|G*.Gtuic" inline="true">
+            <field name="VAR">PWM_input_motor</field>
+            <value name="VALUE">
+              <block type="variables_get" id="{7p`!stA/=F7LP#IuaZm" inline="true">
+                <field name="VAR">motor_IN1</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id=":ps0zCIF)2]k#x-r8u;7" inline="true">
+                <field name="VAR">Digital_input_motor</field>
+                <value name="VALUE">
+                  <block type="variables_get" id="PvB/RMP=Bfjnc?ZU2Q[{" inline="true">
+                    <field name="VAR">motor_IN2</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="variables_set" id="0*1rM7ihN:},v%bDfBU[" inline="true">
+            <field name="VAR">PWM_input_motor</field>
+            <value name="VALUE">
+              <block type="variables_get" id="5o{#?zL@3hTcW]@A7NN}" inline="true">
+                <field name="VAR">motor_IN2</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="Kv{}ujl0k-{cOWK)T(nz" inline="true">
+                <field name="VAR">Digital_input_motor</field>
+                <value name="VALUE">
+                  <block type="variables_get" id="L@^SQR}u*)oAoM91EG^h" inline="true">
+                    <field name="VAR">motor_IN1</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="inout_PWM_write" id="ThL$,@Nf@7~4S:h4D~Po" inline="true">
+            <value name="PIN">
+              <block type="variables_get" id="2O3/j-Sx.@%,RTc_|F+i" inline="true">
+                <field name="VAR">PWM_input_motor</field>
+              </block>
+            </value>
+            <value name="NUM">
+              <shadow type="math_number" id="PIM]O+cLL08HzJfGEKf,">
+                <field name="NUM">0</field>
+              </shadow>
+              <block type="variables_get" id="d-Yd0g2~|zx5~dXlOu|0">
+                <field name="VAR">motor_speed</field>
+              </block>
+            </value>
+            <next>
+              <block type="inout_digital_write" id="?h,Fq^8U?jHeY+VWsB`9" inline="true">
+                <value name="PIN">
+                  <block type="variables_get" id="rr%-{+Rs5oltqO)Q?nc[" inline="true">
+                    <field name="VAR">Digital_input_motor</field>
+                  </block>
+                </value>
+                <value name="STAT">
+                  <shadow type="inout_onoff" id="McDqaO8O+_2DwqT08jzf">
+                    <field name="BOOL">LOW</field>
+                  </shadow>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="P2r$x[AD/]kCMsvm=FO~" x="-463" y="212">
+    <mutation>
+      <arg name="pin_"></arg>
+    </mutation>
+    <field name="NAME">LED1</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="procedures_callnoreturn" id="yUuoJU;R[#-b*c}hna7f">
+        <mutation name="LED">
+          <arg name="LED_pin"></arg>
+        </mutation>
+        <value name="ARG0">
+          <block type="math_number" id="`6~7yT#2EO}0KG^~I9@l">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="[Ch0357+P4,+N8Xd+[6o" x="-463" y="363">
+    <mutation>
+      <arg name="LED_pin"></arg>
+    </mutation>
+    <field name="NAME">LED</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="inout_PWM_write" id="WQG/-O?^q[0*L9!H^OL1">
+        <value name="NUM">
+          <shadow type="math_number" id="_l9e-mCks_-{eMiSP#@S">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
       </block>
     </statement>
   </block>
