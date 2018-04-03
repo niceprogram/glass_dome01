@@ -5,7 +5,7 @@
 
    Create a BLE server that, once we receive a connection, will send periodic notifications.
    The service advertises itself as: 6E400001-B5A3-F393-E0A9-E50E24DCCA9E
-   Has a characteristic of: 6E400002-B5A3-F393-E0A9-E50E24DCCA9E - used for receiving data with "WRITE"
+   Has a characteristic of: 6E400002-B5A3-F393-E0A9-E50E24DCCA9E - used for receiving data with "WRITE" 
    Has a characteristic of: 6E400003-B5A3-F393-E0A9-E50E24DCCA9E - used to send data with  "NOTIFY"
 
    The design of creating the BLE server is:
@@ -17,21 +17,20 @@
    6. Start advertising.
 
    In this example rxValue is the data received (only accessible inside that function).
-   And txValue is the data to be sent, in this example just a byte incremented every second.
+   And txValue is the data to be sent, in this example just a byte incremented every second. 
 */
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>
 #include <BLE2902.h>
-#include "SSD1306.h" // alias for `#include "SSD1306Wire.h"'
-
-// Initialize the OLED display using Wire library
-SSD1306  display(0x3c, 5, 4);
 
 BLECharacteristic *pCharacteristic;
 bool deviceConnected = false;
-//float txValue = 0;
-//const int sensorPin = 36; //**************************************************************************CHANGE TO YOUR PIN
+float txValue = 0;
+const int readPin = 32; // Use GPIO number. See ESP32 board pinouts
+const int LED = 2; // Could be different depending on the dev board. I used the DOIT ESP32 dev board.
+
+//std::string rxValue; // Could also make this a global var to access it in loop()
 
 // See the following for generating UUIDs:
 // https://www.uuidgenerator.net/
@@ -39,7 +38,6 @@ bool deviceConnected = false;
 #define SERVICE_UUID           "6E400001-B5A3-F393-E0A9-E50E24DCCA9E" // UART service UUID
 #define CHARACTERISTIC_UUID_RX "6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
 #define CHARACTERISTIC_UUID_TX "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
-
 
 class MyServerCallbacks: public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
@@ -52,21 +50,42 @@ class MyServerCallbacks: public BLEServerCallbacks {
 };
 
 class MyCallbacks: public BLECharacteristicCallbacks {
-    
+    void onWrite(BLECharacteristic *pCharacteristic) {
+      std::string rxValue = pCharacteristic->getValue();
+
+      if (rxValue.length() > 0) {
+        //Serial.println("*********");
+        //Serial.print("Received Value: ");
+
+        for (int i = 0; i < rxValue.length(); i++) {
+          Serial.print(rxValue[i]);
+        }
+
+        //Serial.println();
+
+        // Do stuff based on the command received from the app
+        //if (rxValue.find("A") != -1) { 
+        //  Serial.print("Turning ON!");
+        //  digitalWrite(LED, HIGH);
+       // }
+        //else if (rxValue.find("B") != -1) {
+        //  Serial.print("Turning OFF!");
+        //  digitalWrite(LED, LOW);
+        //}
+
+       // Serial.println();
+        //Serial.println("*********");
+      }
+    }
 };
 
 void setup() {
   Serial.begin(9600);
-  pinMode(sensorPin, INPUT);
-  display.init();
-  //display.flipScreenVertically();
-  display.setColor(WHITE);
-  display.setTextAlignment(TEXT_ALIGN_CENTER);
-  display.setFont(ArialMT_Plain_10);
 
+  pinMode(LED, OUTPUT);
 
   // Create the BLE Device
-  BLEDevice::init("JohnnyFRX ESP32"); // ************************************************Provide Unique Name
+  BLEDevice::init("ESP32 UART Test Κοερτ"); // Give it a name
 
   // Create the BLE Server
   BLEServer *pServer = BLEDevice::createServer();
@@ -80,7 +99,7 @@ void setup() {
                       CHARACTERISTIC_UUID_TX,
                       BLECharacteristic::PROPERTY_NOTIFY
                     );
-
+                      
   pCharacteristic->addDescriptor(new BLE2902());
 
   BLECharacteristic *pCharacteristic = pService->createCharacteristic(
@@ -96,32 +115,38 @@ void setup() {
   // Start advertising
   pServer->getAdvertising()->start();
   Serial.println("Waiting a client connection to notify...");
-  display.displayOn();
-  display.clear();
-  display.drawString(64, 20, String("Wait"));
-  display.display();
 }
 
 void loop() {
   if (deviceConnected) {
-    display.displayOn();
-    
-    char txString[8]; 
-    dtostrf(txValue, 1, 2, txString); 
+    // Fabricate some arbitrary junk for now...
+    txValue = analogRead(readPin) / 3.456; // This could be an actual sensor reading!
 
+    // Let's convert the value to a char array:
+    char txString[8]; // make sure this is big enuffz
+    dtostrf(txValue, 1, 2, txString); // float_val, min_width, digits_after_decimal, char_buffer
+    
+//    pCharacteristic->setValue(&txValue, 1); // To send the integer value
+    pCharacteristic->setValue("Hello!"); // Sending a test message
     pCharacteristic->setValue(txString);
-
-    pCharacteristic->notify(); 
     
-    display.clear();
+    pCharacteristic->notify(); // Send the value to the app!
+    Serial.print("*** Sent Value: ");
     Serial.print(txString);
-    display.drawString(64, 20, String(txString));
-   
-    display.display();
-    
+    Serial.println(" ***");
+
+    // You can add the rxValue checks down here instead
+    // if you set "rxValue" as a global var at the top!
+    // Note you will have to delete "std::string" declaration
+    // of "rxValue" in the callback function.
+//    if (rxValue.find("A") != -1) { 
+//      Serial.println("Turning ON!");
+//      digitalWrite(LED, HIGH);
+//    }
+//    else if (rxValue.find("B") != -1) {
+//      Serial.println("Turning OFF!");
+//      digitalWrite(LED, LOW);
+//    }
   }
-  else {
-    display.displayOff();
-  };
   delay(1000);
 }
