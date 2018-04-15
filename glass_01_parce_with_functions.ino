@@ -23,15 +23,12 @@ void setup() {
   pinMode(5, OUTPUT); /////////
   pinMode(6, OUTPUT); //PWM ///
   pinMode(9, OUTPUT); /////////
-  
+  pinMode(11, OUTPUT);/////////
   digitalWrite(3, LOW);
   digitalWrite(5, LOW);
   digitalWrite(6, LOW);
   digitalWrite(9, LOW);
-  
-  pinMode(10, OUTPUT); //LED ///
-  pinMode(11, OUTPUT); /////////
-  digitalWrite(10, LOW);
+  digitalWrite(11, LOW);
   digitalWrite(11, LOW); 
   
   
