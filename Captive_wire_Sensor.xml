@@ -1,0 +1,227 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <toolboxcategories>CAT_LOGIC,CAT_LOOPS,CAT_MATH,CAT_ARRAY,CAT_TEXT,CAT_VARIABLES,CAT_FUNCTIONS,CAT_ARDUINO,CAT_ANEMOROTATION,CAT_ROBOT_MISC,CAT_APDS_9960_RGB_Gesture,CAT_OLED_U8G,CAT_LED_RGB_CHAIN,CAT_MATRIX_LED_RGB,CAT_ARDUINO_SERVO,CAT_MBOT_4,CAT_STEPPER,CAT_ESUS,CAT_MRDUINO,CAT_LCD_SCREEN,CAT_BLUETOOTH_MISC,CAT_KEYPAD,CAT_SHARP,CAT_RFID,AUTODUINO_TARGET_AUTODUINO,AUTODUINO_TARGET_AUTOALARME,AUTODUINO_TARGET_AUTOLUMI,AUTODUINO_TARGET_PORTAIL_1,CAT_ETHERNET,CAT_BLYNK_CC</toolboxcategories>
+  <toolbox>toolbox_arduino_4</toolbox>
+  <block type="procedures_defreturn" id="SOA-O0;ad(l({zcuCyt#" x="163" y="-87">
+    <mutation>
+      <arg name="test_wire_pulse"></arg>
+      <arg name="feel_Captive_wire"></arg>
+      <arg name="Next_menu"></arg>
+    </mutation>
+    <field name="NAME">Captive_wire_Sensor</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+    <statement name="STACK">
+      <block type="controls_if" id="w,]@JZcq,j[=I6KKSf`H">
+        <value name="IF0">
+          <block type="logic_operation" id="jJ2bIG)VLLPtNU.jiaI5">
+            <field name="OP">AND</field>
+            <value name="A">
+              <block type="logic_compare" id="ob9z4#~wk7!@Q(;]Zm*4">
+                <field name="OP">GTE</field>
+                <value name="A">
+                  <block type="math_arithmetic" id="3uj^+S1O!Zgwn)f-qM:E">
+                    <field name="OP">MINUS</field>
+                    <value name="A">
+                      <block type="millis" id="LMkv7r`.C8k06s*(TH(P"></block>
+                    </value>
+                    <value name="B">
+                      <block type="variables_get" id="F)vURH8%!vgl}6Rjf/|.">
+                        <field name="VAR">tempsmillis</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="Bkxi,|xoM/qU}fBqFN3b">
+                    <field name="NUM">2000</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_compare" id="ofvF{DQ@qmx]-@@|e*^^">
+                <field name="OP">EQ</field>
+                <value name="A">
+                  <block type="variables_get" id="$xJ^rGTM$)ZohHvlS0cy">
+                    <field name="VAR">CurrentTouch_Captive_wire_Sensor</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="qhOUzIw`16U%1@+7WCtp">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="variables_set" id="E2Z9_GhO2#^$Tb?pX*3z">
+            <field name="VAR">tempsmillis</field>
+            <value name="VALUE">
+              <block type="millis" id="gsr`+c20)/:+R5W6idhB"></block>
+            </value>
+            <next>
+              <block type="inout_digital_write" id="29u._r()_#}|?15tUL[R">
+                <value name="PIN">
+                  <block type="variables_get" id="m^Vept@dP_NDd]uwsv2K">
+                    <field name="VAR">test_wire_pulse</field>
+                  </block>
+                </value>
+                <value name="STAT">
+                  <shadow type="inout_onoff" id="?qUvw`jcN,rq?-k0SPgu">
+                    <field name="BOOL">HIGH</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="controls_if" id="fd*GDZVAX#snwXz}M-:8">
+                    <value name="IF0">
+                      <block type="logic_compare" id="D`kIWV{CJIo/)]9~ftm~">
+                        <field name="OP">GTE</field>
+                        <value name="A">
+                          <block type="math_arithmetic" id="#dBOh.,xtBY%y@4ct1OR">
+                            <field name="OP">MINUS</field>
+                            <value name="A">
+                              <block type="millis" id="ZT_a;Z0|`R6RIE_1DsI|"></block>
+                            </value>
+                            <value name="B">
+                              <block type="variables_get" id="nJ~EM@u:#cH7ZgO$_v_y">
+                                <field name="VAR">tempsmacros</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="|*m}1I@IJZXek8L@Q6En">
+                            <field name="NUM">50</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="variables_set" id="evI=FaCZ%RuXjYDeH$RC">
+                        <field name="VAR">tempsmacros</field>
+                        <value name="VALUE">
+                          <block type="millis" id="IhUOR*GghyZ_[$^__fK1"></block>
+                        </value>
+                        <next>
+                          <block type="controls_if" id="NE?zi^krt+K}(!+ERyom">
+                            <value name="IF0">
+                              <block type="logic_compare" id="}$iPeWsc}XYil0]$M]oC">
+                                <field name="OP">LT</field>
+                                <value name="A">
+                                  <block type="inout_analog_read" id="*Tcl|Y)BBIEo@Y?YO++:">
+                                    <value name="PIN">
+                                      <block type="variables_get" id="-aBg@.dF/^xIo*6|`4w4">
+                                        <field name="VAR">feel_Captive_wire</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="math_number" id="1Kk2LTQ7.;bH,m]gf}Pv">
+                                    <field name="NUM">500</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <statement name="DO0">
+                              <block type="variables_set" id="0f!*9[9G%4Pg(+x0sHcX">
+                                <field name="VAR">CurrentTouch_Captive_wire_Sensor</field>
+                                <value name="VALUE">
+                                  <block type="math_number" id="XP:j695iy!$q5Dt4(0`v">
+                                    <field name="NUM">1</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="inout_digital_write" id="cEmsphQ5-^6f*IH3D#1F">
+                                    <value name="PIN">
+                                      <block type="variables_get" id="@o=)GB]6{541c7h7Q#[]">
+                                        <field name="VAR">test_wire_pulse</field>
+                                      </block>
+                                    </value>
+                                    <value name="STAT">
+                                      <shadow type="inout_onoff" id="7L[W}2X~af+j[bQ$tt(C">
+                                        <field name="BOOL">LOW</field>
+                                      </shadow>
+                                    </value>
+                                    <next>
+                                      <block type="controls_switch" id="tXrqQSi?.dVHSEfFtP_]">
+                                        <mutation casebreak="1"></mutation>
+                                        <field name="SWVAR">Next_menu</field>
+                                        <value name="CASE0">
+                                          <block type="math_number" id="YfcwihNKvkxP/?%J]dhT">
+                                            <field name="NUM">0</field>
+                                          </block>
+                                        </value>
+                                        <statement name="DO0">
+                                          <block type="procedures_callnoreturn" id="jO-xQ#fwV3yqe@Fkv6R7">
+                                            <mutation name="manual_LED_selector"></mutation>
+                                          </block>
+                                        </statement>
+                                        <value name="CASE1">
+                                          <block type="math_number" id="t@%$+D0.h|`Z9I+*=QOk">
+                                            <field name="NUM">1</field>
+                                          </block>
+                                        </value>
+                                        <statement name="DO1">
+                                          <block type="procedures_callnoreturn" id="jn_Xh/*?-Kfz`vC5Gk?k">
+                                            <mutation name="manual_RGB_selector"></mutation>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="inout_digital_write" id="x$}!ADjzQMTu,-tK`:HQ">
+            <value name="PIN">
+              <block type="variables_get" id="#P2=e,bV~:4`1`|m,afa">
+                <field name="VAR">test_wire_pulse</field>
+              </block>
+            </value>
+            <value name="STAT">
+              <shadow type="inout_onoff" id="Els.Y15{+6RNW5!Nj@uW">
+                <field name="BOOL">LOW</field>
+              </shadow>
+            </value>
+            <next>
+              <block type="variables_set" id="iSaW-|y-GsANN2JTn!l)">
+                <field name="VAR">CurrentTouch_Captive_wire_Sensor</field>
+                <value name="VALUE">
+                  <block type="math_number" id="++gryn[7()[AmZ,^:A#i">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <value name="RETURN">
+      <block type="math_number" id="nMvOOd?6Y51]U!owWEm:">
+        <field name="NUM">0</field>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defnoreturn" id=";Y|SA5GRcX7mj+^b4^Ll" x="337" y="712">
+    <field name="NAME">manual_RGB_selector</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+  </block>
+  <block type="procedures_defnoreturn" id="V*0QK,KDhps:|p|v]QAw" x="338" y="813">
+    <field name="NAME">manual_LED_selector</field>
+    <comment pinned="false" h="80" w="160">Describe this function...</comment>
+  </block>
+</xml>
