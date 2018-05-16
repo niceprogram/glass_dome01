@@ -1,0 +1,6 @@
+Intro_blink	KEYWORD1
+_setup	KEYWORD2
+
+Captive_wire_Sensor	KEYWORD1
+send_pulse	KEYWORD2
+menu_button	KEYWORD2
